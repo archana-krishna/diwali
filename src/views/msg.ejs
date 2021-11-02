@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>your wish</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="css/styles.css" rel="stylesheet">
+	</head>
+	<body>
+
+          
+          
+		<div class="login-page">
+			<div class="form" style="margin: 500px;">
+				<form method="POST" class="register-form" id="fourm">
+					<label for="title"  >Your name  </label></br>
+					<input required type="text"  name="name" id="name"placeholder="Your Name" style="margin-bottom: 5px;" /></br>
+					<label for="title" >Friend's name</label></br>
+					<input required type="text" name="fname" id="fname" placeholder="friend's name" style="margin-bottom: 5px;" /></br>
+					<label for="title"> Friend's email</label></br>
+					<input required type="text"   name="email" id="email" placeholder="email_id" style="margin-bottom: 5px;"/></br>
+					<button type="submit">Submit</button>
+					
+				</form>
+
+			</div>
+		</div>
+		<hr>
+          
+          
+      
+	<!-- script references -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $('#fourm').submit((e) => {
+            e.preventDefault()
+            $.ajax({
+                url: '/message',
+                method: 'POST',
+                data: {
+                    name: $('#name').val(),
+                    fname: $('#fname').val(),
+                    email: $('#email').val(),
+                    // message: $('#message').val(),
+                },
+                success: (response) => {
+                    console.log(response);
+                    if (response.success) {
+                        alert("Mail Sent Successfully to " + response.fname);
+                        location.reload();
+                    } else {
+                        alert("Failed to Sent Mail");
+                        location.reload();
+                    }
+                },
+                error: (response) => {
+                    alert("Try Again");
+                }
+
+            })
+
+        })
+    </script>
+	</body>
+</html>
